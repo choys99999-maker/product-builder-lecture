@@ -18,6 +18,10 @@
     --toggle-bg: #f5f7fb;
     --toggle-border: #d4dbe8;
     --toggle-hover-bg: #e9eef8;
+    --field-bg: #ffffff;
+    --field-border: #d6dce8;
+    --field-focus: rgba(0, 123, 255, 0.22);
+    --muted-text: #5f6b7a;
 }
 
 body.dark-mode {
@@ -36,6 +40,10 @@ body.dark-mode {
     --toggle-bg: #252c3d;
     --toggle-border: #3a4358;
     --toggle-hover-bg: #30384d;
+    --field-bg: #22293a;
+    --field-border: #3a4358;
+    --field-focus: rgba(79, 140, 255, 0.32);
+    --muted-text: #c4ccdb;
 }
 
 body {
@@ -56,6 +64,7 @@ body {
     position: relative;
     text-align: center;
     background-color: var(--card-bg);
+    width: min(100%, 520px);
     padding: 40px;
     border-radius: 15px;
     box-shadow: 0 10px 20px var(--card-shadow), 0 6px 6px var(--card-shadow);
@@ -132,9 +141,73 @@ h1 {
     box-shadow: 0 0 20px var(--button-hover-shadow);
 }
 
+.partner-form {
+    display: grid;
+    gap: 10px;
+    margin-top: 36px;
+    padding-top: 32px;
+    border-top: 1px solid var(--toggle-border);
+    text-align: left;
+}
+
+.partner-form h2 {
+    margin: 0 0 8px;
+    color: var(--text-color);
+    font-size: 24px;
+    text-align: center;
+}
+
+.partner-form label {
+    color: var(--muted-text);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.partner-form input,
+.partner-form textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--field-border);
+    border-radius: 8px;
+    color: var(--text-color);
+    background-color: var(--field-bg);
+    font: inherit;
+    transition: border-color 0.2s, box-shadow 0.2s, background-color 0.3s, color 0.3s;
+}
+
+.partner-form textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.partner-form input:focus,
+.partner-form textarea:focus {
+    border-color: var(--button-bg);
+    box-shadow: 0 0 0 4px var(--field-focus);
+    outline: none;
+}
+
+.partner-form button {
+    margin-top: 10px;
+    padding: 14px 24px;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    background-color: var(--button-bg);
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 700;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    box-shadow: 0 0 10px var(--button-shadow);
+}
+
+.partner-form button:hover {
+    background-color: var(--button-hover-bg);
+    box-shadow: 0 0 20px var(--button-hover-shadow);
+}
+
 @media (max-width: 480px) {
     .container {
-        width: 100%;
         padding: 28px 20px;
     }
 
