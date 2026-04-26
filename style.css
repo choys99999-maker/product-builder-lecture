@@ -1,25 +1,95 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    color-scheme: light;
+    --page-bg: #f0f0f0;
+    --page-pattern: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%239C92AC' fill-opacity='0.1'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H0V5z'/%3E%3C/g%3E%3C/svg%3E");
+    --card-bg: #ffffff;
+    --text-color: #333333;
+    --number-bg: #eeeeee;
+    --number-shadow: rgba(0, 0, 0, 0.1);
+    --card-shadow: rgba(0, 0, 0, 0.1);
+    --button-bg: #007bff;
+    --button-hover-bg: #0056b3;
+    --button-shadow: rgba(0, 123, 255, 0.5);
+    --button-hover-shadow: rgba(0, 123, 255, 0.8);
+    --toggle-bg: #f5f7fb;
+    --toggle-border: #d4dbe8;
+    --toggle-hover-bg: #e9eef8;
+}
+
+body.dark-mode {
+    color-scheme: dark;
+    --page-bg: #10131a;
+    --page-pattern: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23D6E2FF' fill-opacity='0.08'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H0V5z'/%3E%3C/g%3E%3C/svg%3E");
+    --card-bg: #1b2030;
+    --text-color: #f4f7fb;
+    --number-bg: #2a3142;
+    --number-shadow: rgba(0, 0, 0, 0.28);
+    --card-shadow: rgba(0, 0, 0, 0.35);
+    --button-bg: #4f8cff;
+    --button-hover-bg: #2f6fe8;
+    --button-shadow: rgba(79, 140, 255, 0.38);
+    --button-hover-shadow: rgba(79, 140, 255, 0.65);
+    --toggle-bg: #252c3d;
+    --toggle-border: #3a4358;
+    --toggle-hover-bg: #30384d;
+}
+
 body {
     font-family: sans-serif;
-    background-color: #f0f0f0;
-    background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%239C92AC' fill-opacity='0.1'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H0V5z'/%3E%3C/g%3E%3C/svg%3E");
+    background-color: var(--page-bg);
+    background-image: var(--page-pattern);
+    color: var(--text-color);
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     margin: 0;
+    padding: 20px;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .container {
+    position: relative;
     text-align: center;
-    background-color: white;
+    background-color: var(--card-bg);
     padding: 40px;
     border-radius: 15px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 20px var(--card-shadow), 0 6px 6px var(--card-shadow);
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 24px;
+    padding: 9px 14px;
+    border: 1px solid var(--toggle-border);
+    border-radius: 999px;
+    color: var(--text-color);
+    background-color: var(--toggle-bg);
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+    transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+}
+
+.theme-toggle:hover {
+    background-color: var(--toggle-hover-bg);
+}
+
+.theme-icon {
+    width: 18px;
+    text-align: center;
 }
 
 h1 {
     margin-bottom: 30px;
-    color: #333;
+    color: var(--text-color);
 }
 
 .number-container {
@@ -33,14 +103,15 @@ h1 {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background-color: #eee;
+    background-color: var(--number-bg);
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 24px;
     font-weight: bold;
-    color: #333;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    color: var(--text-color);
+    box-shadow: 0 4px 8px var(--number-shadow);
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
 }
 
 #generate-btn {
@@ -48,14 +119,32 @@ h1 {
     font-size: 18px;
     color: white;
     background-color: #007bff;
+    background-color: var(--button-bg);
     border: none;
     border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.3s, box-shadow 0.3s;
-    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+    box-shadow: 0 0 10px var(--button-shadow);
 }
 
 #generate-btn:hover {
-    background-color: #0056b3;
-    box-shadow: 0 0 20px rgba(0, 123, 255, 0.8);
+    background-color: var(--button-hover-bg);
+    box-shadow: 0 0 20px var(--button-hover-shadow);
+}
+
+@media (max-width: 480px) {
+    .container {
+        width: 100%;
+        padding: 28px 20px;
+    }
+
+    .number-container {
+        gap: 8px;
+    }
+
+    .number {
+        width: 42px;
+        height: 42px;
+        font-size: 20px;
+    }
 }
